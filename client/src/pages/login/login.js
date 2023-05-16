@@ -29,8 +29,8 @@ const Login = ({login}) => {
         dispatch(usersId(newUser.id))
         
         const json = JSON.stringify(newUser)
-        
-        request('http://localhost:3001/users', 'POST', json)
+
+        request('https://test-inboost-api.onrender.com/users', 'POST', json)
             .then(() => navigate('/login'))
             .catch((e) => console.error(e))
     }
@@ -38,7 +38,7 @@ const Login = ({login}) => {
     const userLog = (e) => {
         e.preventDefault();
         // console.log(activeUser);
-        request('http://localhost:3001/users')
+        request('https://test-inboost-api.onrender.com/users')
             // .then(console.log)
             .then(res => res.filter(item => {
                     return item.mail === userLogin.mail && item.pass === userLogin.pass

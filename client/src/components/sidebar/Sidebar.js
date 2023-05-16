@@ -42,7 +42,7 @@ const Sidebar = () => {
 
         const json = JSON.stringify(addNotes.notes);
 
-        request(`http://localhost:3001/users/${userId}`, 'PATCH', json)
+        request(`https://test-inboost-api.onrender.com/users/${userId}`, 'PATCH', json)
             .then(dispatch(notesAdd(info)))
             .then(dispatch(disableTextArea(false)))
             .then(() => textArea.current.focus())

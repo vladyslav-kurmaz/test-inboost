@@ -15,7 +15,7 @@ const ConfirmationPopup = () => {
         
         const json = JSON.stringify(deleteNotes)
         dispatch(notesActive(null))
-        return e.target.getAttribute('data-type') === 'true' ?  request(`http://localhost:3001/users/${userId}`, 'PATCH', json)
+        return e.target.getAttribute('data-type') === 'true' ?  request(`https://test-inboost-api.onrender.com/users/${userId}`, 'PATCH', json)
             .then(() => dispatch(notesDelete(noteActiveId)))
             .then(() => dispatch(disableTextArea(true)))
             .then(() => dispatch(notesShowPopup(false)))

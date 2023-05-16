@@ -22,7 +22,7 @@ function NotesPage({id}) {
   
     useEffect(() => {
         
-            request(`http://localhost:3001/users`)
+            request(`https://test-inboost-api.onrender.com/users`)
                 .then((res) =>  {
                   return res.filter(item => {
                     

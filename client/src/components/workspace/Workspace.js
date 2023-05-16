@@ -23,7 +23,7 @@ const Workspace = () => {
 
         const json = JSON.stringify(editNotes.notes);
         console.log(json);
-        request(`http://localhost:3001/users/${userId}`, 'PATCH', json)
+        request(`https://test-inboost-api.onrender.com/users/${userId}`, 'PATCH', json)
             // .then((res) => console.log(res))
             .catch(error => console.error(error))
     }
