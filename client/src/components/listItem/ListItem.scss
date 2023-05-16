@@ -69,3 +69,11 @@
 .active {
     background-color: #c4c4c4
 }
+
+@media screen and (max-width: 505px) {
+    .notes {
+        max-width: none;
+        width: 100vw;
+        visibility: visible;
+    }
+}

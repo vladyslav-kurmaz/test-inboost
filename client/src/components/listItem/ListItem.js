@@ -10,13 +10,23 @@ const ListItem = () => {
 
   const textArea = useContext(textAreaRef);
 
-  const onActive =  (id) => {
+  const changeSlide = () => {
+    const screenWidth = window.screen.width
+    // console.log(screenWidth);
+    // if (screenWidth < 505) {
+    // }
+  }
+
+  const onActive =  (e, id) => {
+    changeSlide(e)
     // dispatch(notesCurrent(activeUser.notes.filter(note => note.id === id)));
     // await dispatch(disableTextArea(false));
     textArea.current.focus();
-
+    
     return id !== noteActiveId ? dispatch(notesActive(id)) : null
   }
+
+  changeSlide()
 
   const style = (id) => {
 

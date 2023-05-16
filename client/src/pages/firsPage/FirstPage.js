@@ -28,7 +28,8 @@ const FirstPage = () => {
                         onClick={onClick}>Реєстрація</Link>
                 </div>
             </div>
-        </div>
+        </div> 
+
     )
 }
 

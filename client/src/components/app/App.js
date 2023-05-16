@@ -11,11 +11,7 @@ import NotesPage from '../../pages/notesPage';
 
 import './App.scss';
 
-function App() {
-
-  const dispatch = useDispatch();
-
- 
+function App() { 
 
   return (
     <Router>

@@ -55,3 +55,29 @@
         }
     }
 }
+
+@media screen and (max-width: 500px) {
+    .first-page {
+        &__container {
+            max-width: 100vw;
+            max-height: 100vh;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+
+            &-buttons {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+
+                & .button {
+                    width: 40%;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}

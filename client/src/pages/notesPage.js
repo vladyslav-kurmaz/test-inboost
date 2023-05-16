@@ -10,7 +10,7 @@ import ConfirmationPopup from '../components/confirmationPopup/ConfirmationPopup
 import {textAreaRef} from '../components/context/context'
 import request from '../http.hook/http.hook';
 import {notesFeching, notesFeched, notesError, notesShowPopup, user, usersId} from '../components/listItem/ListItemStore'
-
+import './notesPage.scss'
 
 function NotesPage({id}) {
     const textArea = useRef(null);
@@ -20,24 +20,24 @@ function NotesPage({id}) {
   
     const {Provider} = textAreaRef;
   
-    useEffect(() => {
+    // useEffect(() => {
         
-            request(`https://test-inboost-api.onrender.com/users`)
-                .then((res) =>  {
-                  return res.filter(item => {
+    //         request(`https://test-inboost-api.onrender.com/users`)
+    //             .then((res) =>  {
+    //               return res.filter(item => {
                     
-                    return item.id === localStorage.getItem('user') 
-                })
-                })
-                .then((res) => {
-                    dispatch(usersId(localStorage.getItem('user')))
-                    return dispatch(user(res))
-                })
+    //                 return item.id === localStorage.getItem('user') 
+    //             })
+    //             })
+    //             .then((res) => {
+    //                 dispatch(usersId(localStorage.getItem('user')))
+    //                 return dispatch(user(res))
+    //             })
 
-            // return localStorage.getItem('user') ? dispatch(usersId(localStorage.getItem('user'))) : null;
-      // eslint-disable-next-line
+    //         // return localStorage.getItem('user') ? dispatch(usersId(localStorage.getItem('user'))) : null;
+    //   // eslint-disable-next-line
       
-    }, [])
+    // }, [])
 
 
     return (
