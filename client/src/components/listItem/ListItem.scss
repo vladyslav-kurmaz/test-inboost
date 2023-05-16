@@ -1,0 +1,71 @@
+.notes {
+    box-sizing:border-box;
+
+    max-width: 390px;
+    width: 100%;
+    height: 100%;
+    background: #e1e1e1;
+
+    background-color: #F5F5F5;
+    float: left;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-track {
+        background: #fefefe;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #d5d7e2;
+        border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        
+        
+        list-style: none;
+
+        width: 100%;
+        // height: 100%;
+       
+        &-item{
+            padding: 10px;
+            margin-bottom: 7px;
+            padding-left: 20px;
+            cursor: pointer;
+
+
+            &:hover {
+                background-color: #c4c4c4
+            }
+
+            &-info {
+                display: flex;
+
+                & p {
+                    margin: 0;
+                    margin-left: 10px;
+                }
+            }
+
+            &-title {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.active {
+    background-color: #c4c4c4
+}

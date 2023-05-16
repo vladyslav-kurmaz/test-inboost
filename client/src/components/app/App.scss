@@ -1,0 +1,30 @@
+
+
+.header {
+    margin: 0 auto;
+
+    max-width: 1300px;
+    width: 100%;
+    background-color: rgb(192, 191, 191);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // position: fixed;
+    // left: 50%;
+    // transform: translateX(-50%);
+}
+
+.main {
+    margin: 0 auto;
+    height: calc(100vh - 57px);
+
+    max-width: 1300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+
+}

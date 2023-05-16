@@ -1,0 +1,53 @@
+.auto {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        & input {
+            margin-bottom: 15px;
+            width: 50%;
+            height: 25px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        &-enter {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            text-align: center;
+            width: 50%; 
+            height: 25px;
+            border: 1px solid #000;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #858585;
+            }
+    
+            &:active {
+                box-shadow: inset 0px 0px 10px 2px #000;
+            }
+        }
+
+    }
+
+    &__singup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+
+    }
+}
