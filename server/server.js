@@ -53,9 +53,9 @@ app.post('/users', async (req, res) => {
   res.status(201).json({ success: true, message: 'User created successfully', data: userData });
 });
 
-// const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
-app.listen(3001, () => {
+app.listen(port, () => {
   console.log('Server is running on port 3001');
 });
 
