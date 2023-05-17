@@ -10,23 +10,14 @@ const initialState = {
     temp: '',
     singup: null,
     userId: '',
-    activeUser: ''
+    activeUser: '',
+    changeListOrWorkspace: true
 }
 
 const notesSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-        // notesFeching: (state) => {
-        //     state.notesLoadingStatus = 'loading';
-        // },
-        // notesFeched: (state, action) => {
-        //     state.notesLoadingStatus = 'idle';
-        //     state.notes = action.payload;
-        // },
-        // notesError: (state) => {
-        //     state.notesLoadingStatus = 'error';
-        // },
         notesActive: (state, action) => {
             state.noteActiveId = action.payload;
         },
@@ -65,6 +56,9 @@ const notesSlice = createSlice({
         },
         allUsers: (state, action) => {
             state.users = [...state.users, ...action.payload]
+        },
+        changeDisplay: (state, action) => {
+            state.changeListOrWorkspace = action.payload
         }
     }
 })
@@ -83,5 +77,6 @@ export const  {
     notesSingup,
     usersId,
     user,
-    allUsers
+    allUsers,
+    changeDisplay
 } = actions;

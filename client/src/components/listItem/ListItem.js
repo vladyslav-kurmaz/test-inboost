@@ -1,42 +1,41 @@
-import { useState, useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { notesActive, notesCurrent, disableTextArea } from './ListItemStore';
+import { notesActive, changeDisplay } from './ListItemStore';
 import { textAreaRef } from '../context/context';
 import './ListItem.scss'
 
 const ListItem = () => {
   const dispatch = useDispatch();
-  const {noteActiveId, temp, activeUser} = useSelector(state => state.notes);
+  const {noteActiveId, temp, activeUser, changeListOrWorkspace} = useSelector(state => state.notes);
 
   const textArea = useContext(textAreaRef);
 
   const changeSlide = () => {
     const screenWidth = window.screen.width
-    // console.log(screenWidth);
-    // if (screenWidth < 505) {
-    // }
+    if (screenWidth < 505) {
+      return changeListOrWorkspace ? {'display': 'block'} : {'display': 'none'}
+    }
   }
 
-  const onActive =  (e, id) => {
-    changeSlide(e)
-    // dispatch(notesCurrent(activeUser.notes.filter(note => note.id === id)));
-    // await dispatch(disableTextArea(false));
+  const onActive =  (id) => {
+    dispatch(changeDisplay(false))
+    changeSlide();
+
     textArea.current.focus();
     
     return id !== noteActiveId ? dispatch(notesActive(id)) : null
   }
 
-  changeSlide()
-
   const style = (id) => {
 
     return id === noteActiveId ? {
       'backgroundColor': '#c4c4c4'
+      
     } : null
   }
 
   const searchNote = (items, temp) => {
-    return items?.filter(item => {
+    return items.notes.filter(item => {
       return item.description.toLowerCase().indexOf(temp.toLowerCase()) > -1;
     })
   }
@@ -65,10 +64,9 @@ const ListItem = () => {
   }
 
   return (
-    <div className="notes">
+    <div className="notes" style={changeSlide()}>
       <ul className="notes__list">
-        {renderNote(activeUser ? activeUser.notes : null)}
-        
+        {renderNote(activeUser ? activeUser : null)}
       </ul>
     </div>
   )

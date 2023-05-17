@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { notesSingup } from '../../components/listItem/ListItemStore';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +29,6 @@ const FirstPage = () => {
                 </div>
             </div>
         </div> 
-
     )
 }
 

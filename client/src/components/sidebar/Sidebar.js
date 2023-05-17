@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import request from '../../http.hook/http.hook';
 import { useDispatch, useSelector } from 'react-redux';
-import { notesAdd, notesActive, disableTextArea, notesShowPopup, notesTypeOfAction, user, usersId } from '../listItem/ListItemStore';
+import { notesAdd, notesActive, disableTextArea, notesShowPopup, user, usersId } from '../listItem/ListItemStore';
 import {textAreaRef} from '../context/context';
 
 import './Sidebar.scss'
@@ -37,7 +37,6 @@ const Sidebar = () => {
 
         dispatch(notesActive(id));
         const addNotes = JSON.parse(JSON.stringify(activeUser))
-        console.log(addNotes);
         addNotes.notes.push(info)
 
         const json = JSON.stringify(addNotes.notes);
@@ -63,7 +62,7 @@ const Sidebar = () => {
 
     const exitFromNotates = () => {
         navigate('/');
-        dispatch(user(null));
+        dispatch(user([{user : null}]));
         dispatch(usersId(null));
         
     }
@@ -105,6 +104,7 @@ const Sidebar = () => {
                         className='sidebar__button-icon' 
                         alt="icon edit"/>
                 </button>) : null}
+            
         </div>
     )
 }

@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useNavigate } from "react-router-dom";
 import request from "../../http.hook/http.hook";
-import { usersId, notesFeched, user } from "../../components/listItem/ListItemStore";
+import { usersId, user } from "../../components/listItem/ListItemStore";
 import "./Login.scss";
 
 const Login = ({login}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { notes, activeUser } = useSelector(state => state.notes);
 
     const [newUser, setNewUser] = useState({
         id: '',
@@ -29,17 +28,17 @@ const Login = ({login}) => {
         dispatch(usersId(newUser.id))
         
         const json = JSON.stringify(newUser)
-
+       console.log(json);
         request('https://test-inboost-api.onrender.com/users', 'POST', json)
-            .then(() => navigate('/login'))
-            .catch((e) => console.error(e))
+        .then(() => navigate('/login'))
+        .catch((e) => console.error(e))
+            
+
     }
 
     const userLog = (e) => {
         e.preventDefault();
-        // console.log(activeUser);
         request('https://test-inboost-api.onrender.com/users')
-            // .then(console.log)
             .then(res => res.filter(item => {
                     return item.mail === userLogin.mail && item.pass === userLogin.pass
                 }))
@@ -85,6 +84,8 @@ const Login = ({login}) => {
                 pass: e.target.value,
                 id: uuidv4()
             }});
+            default:
+                return
         }
        
     }
@@ -102,7 +103,9 @@ const Login = ({login}) => {
                     return{
                     ...userLogin,
                     pass: e.target.value
-            }})
+            }});
+            default:
+                return
 
         }
     }
@@ -182,42 +185,7 @@ const Login = ({login}) => {
                     className="auto__singup-button">Увійти</Link>
             </div>
         </div>
-    )
-
-    
+    )    
 }
 
 export default Login;
-
-{/* <form className="auto__form">
-    <label 
-        className="auto__form-name " 
-        htmlFor="name">І'мя</label>
-    <input 
-        className="auto__form-name " 
-        type="text" 
-        id='name' />
-    <label 
-        className="auto__form-surnames " 
-        htmlFor="surnames">Прізвище</label>
-    <input 
-        className="auto__form-login " 
-        type="text" 
-        id='login' />
-    <label 
-        className="auto__form-login " 
-        htmlFor="login">Логін</label>
-    <input 
-        className="auto__form-login " 
-        type="text" 
-        id='login' />
-    <label 
-        className="auto__form-pass " 
-        htmlFor="pass">Пароль</label>
-    <input 
-        className="auto__form-pass " 
-        type="text" 
-        id='pass' />
-
-    <button className="auto__form-enter">Зареєструватись</button>
-</form> */}
