@@ -97,7 +97,7 @@ const Login = ({login}) => {
 
                 <button 
                     className="auto__form-enter">Увійти</button>
-                {requestStatus(status, 'Акаунт з таким логіном та паролем не знайдено!')}
+                {requestStatus(status, 'Акаунт з таким логіном та паролем не знайдено!')}         
             </form>
 
             <div className="auto__singup">

@@ -52,6 +52,7 @@ const NotesService = () => {
             .catch((e) => {
                 console.error(e);
                 dispatch(changeStatus('error'));
+                setTimeout(() => dispatch(changeStatus('idle')), 3000)
             })
             .finally(() => e.target.reset())
     
