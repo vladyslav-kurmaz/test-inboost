@@ -1,17 +1,17 @@
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import request from '../../http.hook/http.hook';
 import {textAreaRef} from '../context/context';
 import { notesChangeText } from '../listItem/ListItemStore';
 
 import './Workspace.scss';
+import NotesService from '../../service/NotesServices';
 
 const Workspace = () => {
-    
     const dispatch = useDispatch();
     const {noteActiveId, disabled, activeUser, userId, changeListOrWorkspace} = useSelector(state => state.notes)
     const {notes} = activeUser;
     const textArea = useContext(textAreaRef);
+    const {getUserFromId} = NotesService();
 
     const onChange = (e) =>  {
         dispatch(notesChangeText(e.target.value));
@@ -21,8 +21,7 @@ const Workspace = () => {
         editNotes.notes.filter(item => item.id === noteActiveId ? item.description = e.target.value : '')
 
         const json = JSON.stringify(editNotes.notes);
-        request(`https://test-inboost-api.onrender.com/users/${userId}`, 'PATCH', json)
-            .catch(error => console.error(error))
+        getUserFromId(userId, json);
     }
 
     const showWorkspace = () => {

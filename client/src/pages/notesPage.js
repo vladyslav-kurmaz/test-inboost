@@ -26,13 +26,11 @@ function NotesPage({id}) {
         
             request(`https://test-inboost-api.onrender.com/users`)
                 .then((res) =>  {
-                  console.log(res);
                   return res.filter(item => {
                     return item.id === localStorage.getItem('user') 
                 })
                 })
                 .then((res) => {
-                  console.log(res);
                     dispatch(usersId(localStorage.getItem('user')))
                     dispatch(user(res))
                 })

@@ -16,6 +16,7 @@ function App() {
         <Route path='/login' element={<Login login={true}/>}/>
         <Route path='/singup' element={<Login login={false}/>}/>
         <Route path='/notes' element={<NotesPage/>}/>
+        <Route path='/notes/:notesId' element={<NotesPage/>}/>
       </Routes>
     </Router>
     

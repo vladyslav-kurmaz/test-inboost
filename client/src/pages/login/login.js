@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-import { Link, useNavigate } from "react-router-dom";
-import request from "../../http.hook/http.hook";
-import { usersId, user } from "../../components/listItem/ListItemStore";
+import { Link } from "react-router-dom";
+
+import NotesService from "../../service/NotesServices";
 import "./Login.scss";
 
 const Login = ({login}) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const {userLog, requestStatus, singUp} = NotesService();
+    const {status} = useSelector((state) => state.notes)
 
     const [newUser, setNewUser] = useState({
         id: '',
@@ -22,40 +22,6 @@ const Login = ({login}) => {
         mail: '',
         pass: ''
     })
-
-    const singUp = (e) => {
-        e.preventDefault();
-        dispatch(usersId(newUser.id))
-        
-        const json = JSON.stringify(newUser)
-       console.log(json);
-        request('https://test-inboost-api.onrender.com/users', 'POST', json)
-        .then(() => navigate('/login'))
-        .catch((e) => console.error(e))
-            
-
-    }
-
-    const userLog = (e) => {
-        e.preventDefault();
-        request('https://test-inboost-api.onrender.com/users')
-            .then(res => res.filter(item => {
-                    return item.mail === userLogin.mail && item.pass === userLogin.pass
-                }))
-            .then((res) => {
-                localStorage.setItem('user', res[0].id);
-                localStorage.setItem('mail', res[0].mail);
-                localStorage.setItem('pass', res[0].pass);
-                return res;
-            })
-            .then((res) => {
-                dispatch(user(res))
-                dispatch(usersId(res[0].id))
-            } )
-            .then(() => navigate('/notes'))
-
-
-    }
 
     const addInfoNewUser = (e) => {
         switch (e.target.getAttribute('id')) {
@@ -114,7 +80,7 @@ const Login = ({login}) => {
         <div className="auto">
             <h2>Вхід</h2>
             <form className="auto__form"
-                onSubmit={userLog}>
+                onSubmit={(e) => userLog(e, userLogin)}>
                 <input 
                     className="auto__form-login " 
                     type="text" 
@@ -131,6 +97,7 @@ const Login = ({login}) => {
 
                 <button 
                     className="auto__form-enter">Увійти</button>
+                {requestStatus(status, 'Акаунт з таким логіном та паролем не знайдено!')}
             </form>
 
             <div className="auto__singup">
@@ -145,7 +112,7 @@ const Login = ({login}) => {
             <h2>Реєстрація</h2>
             <form 
                 className="auto__form"
-                onSubmit={singUp}
+                onSubmit={(e) => singUp(e, newUser)}
                 >
                 <input 
                     className="auto__form-name " 
@@ -176,6 +143,8 @@ const Login = ({login}) => {
                     // to='/notes'
                     className="auto__form-enter"
                     >Зареєструватись</button>
+
+                {requestStatus(status, 'Акаунт з таким логіном і паролем вже зареєстровано')}
             </form>
 
             <div className="auto__singup">

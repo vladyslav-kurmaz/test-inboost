@@ -11,7 +11,8 @@ const initialState = {
     singup: null,
     userId: '',
     activeUser: '',
-    changeListOrWorkspace: true
+    changeListOrWorkspace: true,
+    status: 'idle',
 }
 
 const notesSlice = createSlice({
@@ -59,6 +60,9 @@ const notesSlice = createSlice({
         },
         changeDisplay: (state, action) => {
             state.changeListOrWorkspace = action.payload
+        },
+        changeStatus: (state, action) => {
+            state.status = action.payload
         }
     }
 })
@@ -78,5 +82,6 @@ export const  {
     usersId,
     user,
     allUsers,
-    changeDisplay
+    changeDisplay,
+    changeStatus
 } = actions;

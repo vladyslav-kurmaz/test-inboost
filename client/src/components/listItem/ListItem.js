@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { notesActive, changeDisplay } from './ListItemStore';
 import { textAreaRef } from '../context/context';
@@ -35,9 +36,9 @@ const ListItem = () => {
   }
 
   const searchNote = (items, temp) => {
-    return items.notes.filter(item => {
-      return item.description.toLowerCase().indexOf(temp.toLowerCase()) > -1;
-    })
+    return items?.notes.filter(item => {
+      return item.description?.toLowerCase().indexOf(temp.toLowerCase()) > -1;
+    });
   }
 
   const renderNote = (data) => {
@@ -53,11 +54,14 @@ const ListItem = () => {
           onClick={() => onActive(id)} 
           key={id}
           style={style(id)}>
-          <h3 className="notes__list-item-title">{titl}</h3>
-          <div className="notes__list-item-info">
-            <span className="notes__list-item-info-time">{time}</span>
-            <p className="notes__list-item-info-desc">{desc}</p>
-          </div>
+            <Link to={`/notes/${id}`}>
+              <h3 className="notes__list-item-title">{titl}</h3>
+              <div className="notes__list-item-info">
+                <span className="notes__list-item-info-time">{time}</span>
+                <p className="notes__list-item-info-desc">{desc}</p>
+              </div>
+            </Link>  
+          
         </li>
       )
     })
